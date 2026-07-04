@@ -10,8 +10,18 @@ add_executable(resume_screening
 )
 target_include_directories(resume_screening PRIVATE include)
 
+add_executable(resume_web
+    src/web_server.cpp
+    src/screening_system.cpp
+)
+target_include_directories(resume_web PRIVATE include)
+if(WIN32)
+    target_link_libraries(resume_web PRIVATE ws2_32)
+endif()
+
 if(MSVC)
     target_compile_options(resume_screening PRIVATE /W4)
 else()
     target_compile_options(resume_screening PRIVATE -Wall -Wextra -Wpedantic)
+    target_compile_options(resume_web PRIVATE -Wall -Wextra -Wpedantic)
 endif()

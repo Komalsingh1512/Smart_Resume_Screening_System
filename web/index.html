@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TalentLens — Resume Screening</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">T</span><div><strong>TalentLens</strong><small>Smart screening</small></div></div>
+    <nav>
+      <button class="nav-link active" data-page="dashboard"><span>⌂</span> Overview</button>
+      <button class="nav-link" data-page="resumes"><span>▤</span> Candidates</button>
+      <button class="nav-link" data-page="matching"><span>◇</span> Match & rank</button>
+    </nav>
+    <div class="sidebar-note"><span>DSA</span><p>Powered by hashing, trie search, and sorting.</p></div>
+  </aside>
+
+  <main>
+    <header><div><p class="eyebrow">RECRUITMENT WORKSPACE</p><h1 id="page-title">Good candidates, found faster.</h1></div><button class="primary" id="add-top">＋ Add candidate</button></header>
+
+    <section id="dashboard" class="page active">
+      <div class="hero"><div><span class="pill">SMART RESUME SCREENING</span><h2>Make every shortlist<br><em>evidence-based.</em></h2><p>Extract skills instantly, compare job requirements, and rank every applicant with a clear score.</p><button class="dark" data-go="matching">Start matching →</button></div><div class="score-orbit"><div class="score-ring"><strong>92</strong><span>match score</span></div><span class="orbit-tag tag-one">C++</span><span class="orbit-tag tag-two">Algorithms</span><span class="orbit-tag tag-three">SQL</span></div></div>
+      <div class="stats"><article><span>Total candidates</span><strong id="total-count">0</strong><small>in the talent pool</small></article><article><span>Skills indexed</span><strong id="skill-count">0</strong><small>unique keywords</small></article><article><span>Screening engine</span><strong class="online">Online</strong><small><i></i> ready to rank</small></article></div>
+      <div class="section-head"><div><p class="eyebrow">TALENT POOL</p><h3>Recent candidates</h3></div><button class="text-btn" data-go="resumes">View everyone →</button></div>
+      <div id="recent-list" class="candidate-grid"></div>
+    </section>
+
+    <section id="resumes" class="page">
+      <div class="page-heading"><div><p class="eyebrow">CANDIDATE DATABASE</p><h2>Your talent pool</h2><p>Every resume is indexed automatically through the skill trie.</p></div><label class="search"><span>⌕</span><input id="candidate-search" placeholder="Search candidates or skills"></label></div>
+      <div id="candidate-list" class="candidate-grid full"></div>
+    </section>
+
+    <section id="matching" class="page">
+      <div class="page-heading"><div><p class="eyebrow">INTELLIGENT MATCHING</p><h2>Build your shortlist</h2><p>Define the role. The engine handles the comparison and ranking.</p></div></div>
+      <div class="matching-layout">
+        <form id="job-form" class="panel form-panel">
+          <div class="panel-number">01</div><h3>Job requirements</h3>
+          <label>Job title<input name="title" required placeholder="e.g. C++ Developer"></label>
+          <label>Minimum experience<div class="input-suffix"><input name="experience" type="number" min="0" value="3" required><span>years</span></div></label>
+          <label>Required skills<textarea name="skills" required placeholder="C++, data structures, algorithms, SQL, Git"></textarea><small>Separate each skill with a comma</small></label>
+          <button class="primary wide" type="submit">Rank candidates <span>→</span></button>
+          <p class="formula"><b>Scoring formula</b><br>80% skill coverage + 20% experience</p>
+        </form>
+        <div class="results-wrap"><div class="results-head"><div><span class="panel-number">02</span><h3>Ranked results</h3></div><button id="export-btn" class="outline" disabled>Export shortlist</button></div><div id="ranking-results" class="empty-state"><span>◇</span><h3>No ranking yet</h3><p>Enter the job requirements to discover the strongest candidates.</p></div></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="candidate-modal">
+    <form id="candidate-form" class="modal-card"><button type="button" class="close" id="close-modal">×</button><p class="eyebrow">NEW CANDIDATE</p><h2>Add a resume</h2><p>The trie will extract recognized skills from the resume text.</p><div class="form-grid"><label>Full name<input name="name" required placeholder="Candidate name"></label><label>Email address<input name="email" type="email" required placeholder="name@example.com"></label><label>Experience<input name="experience" type="number" min="0" required placeholder="Years"></label><label>Education<input name="education" required placeholder="e.g. MCA"></label></div><label>Resume content<textarea name="content" required rows="6" placeholder="Paste resume text, experience, and skills here..."></textarea></label><button class="primary wide" type="submit">Add candidate</button></form>
+  </dialog>
+  <div id="toast"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

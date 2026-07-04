@@ -13,6 +13,25 @@ The score is **80% skill match + 20% experience match**. Experience receives ful
 
 ## Build and run
 
+## Run the web interface
+
+### Easiest method
+
+Double-click **`run_web.bat`**. Your browser will open automatically. Keep the black server window open while using the application.
+
+### PowerShell method
+
+Compile the web server with MinGW:
+
+```powershell
+g++ -std=c++17 -Iinclude src/web_server.cpp src/screening_system.cpp -lws2_32 -o resume_web.exe
+.\resume_web.exe
+```
+
+Keep that PowerShell window open, then visit **http://localhost:8080** in your browser. Press `Ctrl+C` in PowerShell when you want to stop it.
+
+The web application includes candidate management, automatic skill extraction, search, job matching, ranked results, and shortlist export.
+
 ### CMake (recommended)
 
 ```powershell
