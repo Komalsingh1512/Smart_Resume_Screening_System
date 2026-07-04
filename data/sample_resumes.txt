@@ -1,0 +1,5 @@
+# name|email|experience years|education|resume text
+Aarav Sharma|aarav@example.com|3|MCA|C++ developer with data structures, algorithms, SQL, Git and problem solving experience.
+Priya Singh|priya@example.com|5|M.Tech|Java and Python engineer skilled in AWS, Docker, Kubernetes, SQL and leadership.
+Rohan Verma|rohan@example.com|2|BCA|Frontend developer using JavaScript, TypeScript, React, HTML, CSS and Git.
+Meera Nair|meera@example.com|4|MCA|Backend engineer experienced in C++, Linux, MySQL, Docker, communication and algorithms.

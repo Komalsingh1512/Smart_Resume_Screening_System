@@ -1,0 +1,19 @@
+SMART RESUME SCREENING - SHORTLIST REPORT
+Job: Backend Engineer
+Required skills: C++, SQL, Docker, Linux
+Minimum experience: 3 years
+
+1. Meera Nair (ID 4)
+   Score: 80.00%
+   Email: meera@example.com
+   Experience: 4 years
+   Matched: c++, docker, linux
+   Missing: sql
+
+2. Priya Singh (ID 2)
+   Score: 60.00%
+   Email: priya@example.com
+   Experience: 5 years
+   Matched: docker, sql
+   Missing: c++, linux
+
