@@ -62,7 +62,14 @@ document.querySelector('#job-form').addEventListener('submit', async event => {
   const response = await fetch('/api/rank',{method:'POST',body:new URLSearchParams(new FormData(event.target))});
   const data = await response.json(); latestRanking = data.results || [];
   const root = document.querySelector('#ranking-results'); root.className='ranking-list';
-  root.innerHTML = latestRanking.map(r => `<article class="rank-card"><span class="rank-number">#${r.rank}</span><div><h4>${escapeHtml(r.name)}</h4><p>${r.experience} years experience · ${escapeHtml(r.email)}</p><span class="matched">Matched: ${escapeHtml(r.matched.join(', ') || 'None')}</span></div><div class="score">${r.score.toFixed(0)}<small>match %</small></div></article>`).join('') || '<div class="empty-state"><h3>No candidates found</h3></div>';
+  root.innerHTML = latestRanking.map(r => {
+    const matched = r.matched.map(skill => `<span class="skill-good">${escapeHtml(skill)}</span>`).join('');
+    const missing = r.missing.map(skill => `<span class="skill-gap">${escapeHtml(skill)}</span>`).join('');
+    const guidance = r.missing.length
+      ? `To become a stronger fit for this role, focus on: ${escapeHtml(r.missing.join(', '))}.`
+      : 'This candidate meets every listed skill requirement.';
+    return `<article class="rank-card"><div class="rank-main"><span class="rank-number">#${r.rank}</span><div class="rank-person"><h4>${escapeHtml(r.name)}</h4><p>${r.experience} years experience · ${escapeHtml(r.email)}</p></div><div class="score">${r.score.toFixed(0)}<small>match score</small></div></div><div class="skill-analysis"><div><b>Matched skills</b><div class="analysis-tags">${matched || '<span class="neutral-tag">None detected</span>'}</div></div><div><b>Skills to improve</b><div class="analysis-tags">${missing || '<span class="complete-tag">No skill gaps</span>'}</div></div></div><p class="guidance"><strong>Recommendation:</strong> ${guidance}</p></article>`;
+  }).join('') || '<div class="empty-state"><h3>No candidates found</h3></div>';
   document.querySelector('#export-btn').disabled = !latestRanking.length; toast('Ranking complete');
 });
 
